@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="UserRegistrationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-messages.min.js"></script>
+</head>
+<body ng-controller="RegistrationController">
+    <div class="container mt-5">
+        <h1>User Registration</h1>
+        <form name="registrationForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group">
+                <label for="firstName">{{ 'FIRST_NAME' | translate }}</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" ng-model="user.firstName" required>
+                <div ng-messages="registrationForm.firstName.$error" ng-show="registrationForm.firstName.$touched">
+                    <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">{{ 'LAST_NAME' | translate }}</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" ng-model="user.lastName" required>
+                <div ng-messages="registrationForm.lastName.$error" ng-show="registrationForm.lastName.$touched">
+                    <div ng-message="required">{{ 'REQUIRED' | translate }}</div>
+                </div>
+            </div>
+            <app-address-component [registrationForm]="registrationForm"></app-address-component>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">{{ 'REGISTER' | translate }}</button>
+            </div>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
